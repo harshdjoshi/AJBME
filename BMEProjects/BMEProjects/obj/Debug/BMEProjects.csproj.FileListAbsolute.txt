@@ -1,0 +1,6 @@
+D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProjects\obj\Debug\BMEProjects.csproj.CoreCompileInputs.cache
+D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProjects\bin\Debug\BMEProjects.exe.config
+D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProjects\bin\Debug\BMEProjects.exe
+D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProjects\bin\Debug\BMEProjects.pdb
+D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProjects\obj\Debug\BMEProjects.exe
+D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProjects\obj\Debug\BMEProjects.pdb
