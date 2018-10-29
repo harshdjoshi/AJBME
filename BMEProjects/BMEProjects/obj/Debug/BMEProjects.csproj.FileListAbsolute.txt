@@ -8,3 +8,5 @@ C:\Users\akanksha.joshi.JOSHI\Source\Repos\harshdjoshi\AJBME\BMEProjects\BMEProj
 C:\Users\akanksha.joshi.JOSHI\Source\Repos\harshdjoshi\AJBME\BMEProjects\BMEProjects\obj\Debug\BMEProjects.csproj.CoreCompileInputs.cache
 C:\Users\akanksha.joshi.JOSHI\Source\Repos\harshdjoshi\AJBME\BMEProjects\BMEProjects\obj\Debug\BMEProjects.exe
 C:\Users\akanksha.joshi.JOSHI\Source\Repos\harshdjoshi\AJBME\BMEProjects\BMEProjects\obj\Debug\BMEProjects.pdb
+D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProjects\obj\Debug\BMEProjects.csprojAssemblyReference.cache
+D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProjects\bin\Debug\lung.csv
