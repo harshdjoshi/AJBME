@@ -1,0 +1,11 @@
+C:\AkankshaBME\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\bin\Debug\netcoreapp2.1\BMEProject-Core.deps.json
+C:\AkankshaBME\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\bin\Debug\netcoreapp2.1\BMEProject-Core.runtimeconfig.json
+C:\AkankshaBME\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\bin\Debug\netcoreapp2.1\BMEProject-Core.runtimeconfig.dev.json
+C:\AkankshaBME\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\bin\Debug\netcoreapp2.1\BMEProject-Core.dll
+C:\AkankshaBME\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\bin\Debug\netcoreapp2.1\BMEProject-Core.pdb
+C:\AkankshaBME\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\obj\Debug\netcoreapp2.1\BMEProject-Core.csproj.CoreCompileInputs.cache
+C:\AkankshaBME\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\obj\Debug\netcoreapp2.1\BMEProject-Core.AssemblyInfoInputs.cache
+C:\AkankshaBME\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\obj\Debug\netcoreapp2.1\BMEProject-Core.AssemblyInfo.cs
+C:\AkankshaBME\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\obj\Debug\netcoreapp2.1\BMEProject-Core.dll
+C:\AkankshaBME\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\obj\Debug\netcoreapp2.1\BMEProject-Core.pdb
+C:\AkankshaBME\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\obj\Debug\netcoreapp2.1\BMEProject-Core.csprojAssemblyReference.cache
