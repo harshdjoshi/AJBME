@@ -9,3 +9,14 @@ C:\AkankshaBME\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\obj\Debug\netco
 C:\AkankshaBME\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\obj\Debug\netcoreapp2.1\BMEProject-Core.dll
 C:\AkankshaBME\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\obj\Debug\netcoreapp2.1\BMEProject-Core.pdb
 C:\AkankshaBME\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\obj\Debug\netcoreapp2.1\BMEProject-Core.csprojAssemblyReference.cache
+D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\bin\Debug\netcoreapp2.1\BMEProject-Core.deps.json
+D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\bin\Debug\netcoreapp2.1\BMEProject-Core.runtimeconfig.json
+D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\bin\Debug\netcoreapp2.1\BMEProject-Core.runtimeconfig.dev.json
+D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\bin\Debug\netcoreapp2.1\BMEProject-Core.dll
+D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\bin\Debug\netcoreapp2.1\BMEProject-Core.pdb
+D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\obj\Debug\netcoreapp2.1\BMEProject-Core.csprojAssemblyReference.cache
+D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\obj\Debug\netcoreapp2.1\BMEProject-Core.csproj.CoreCompileInputs.cache
+D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\obj\Debug\netcoreapp2.1\BMEProject-Core.AssemblyInfoInputs.cache
+D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\obj\Debug\netcoreapp2.1\BMEProject-Core.AssemblyInfo.cs
+D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\obj\Debug\netcoreapp2.1\BMEProject-Core.dll
+D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\obj\Debug\netcoreapp2.1\BMEProject-Core.pdb

@@ -195,18 +195,22 @@ namespace Bme121
                         while (a[pos] == item)
                         {
                             if (pos == a.Length - 1)
-                                return;
+                            {
+                                cycleDone = true;
+                                break;
+                            }
                             pos++;
                         }
+                        
                         var temp = a[pos];
                         a[pos] = item;
+                        pos = Rank(temp, pos);
+                        //something is off here (look at rank or assignment)
                         item = temp;
-                        pos = Rank(item, skip: cycleStart);
-                        
+                        writes++;
                     }
                 }
             }
-
             WriteLine("Reads = {0:n0}, writes = {1:n0}, compares = {2:n0}", reads, writes, compares);
         }
 
