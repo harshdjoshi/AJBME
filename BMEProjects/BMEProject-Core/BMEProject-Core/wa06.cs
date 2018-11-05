@@ -13,7 +13,7 @@ namespace Bme121
         // Create an integer array filled with random values.
         // This is a modified version which allows generation of an array
         // with no repeated values (all values unique).
-       
+
         static int[] NewRandomArray(int size, bool unique = false)
         {
             if (size < 1) return new int[0];
@@ -179,6 +179,7 @@ namespace Bme121
 
             for (int cycleStart = 0; cycleStart < a.Length; cycleStart++)
             {
+                Console.WriteLine(cycleStart);
                 int item = a[cycleStart];
                 int pos = Rank(item, skip: cycleStart);
 
@@ -191,13 +192,17 @@ namespace Bme121
                     }
                     else /* ( pos != cycleStart ) */
                     {
-                        //todo
-                        if (a[pos] == item)
-                            pos += 1;
-                        int temp = item;
-                        item = a[pos];
-                        a[pos] = temp;
-                        writes++;                        
+                        while (a[pos] == item)
+                        {
+                            if (pos == a.Length - 1)
+                                return;
+                            pos++;
+                        }
+                        var temp = a[pos];
+                        a[pos] = item;
+                        item = temp;
+                        pos = Rank(item, skip: cycleStart);
+                        
                     }
                 }
             }
@@ -206,7 +211,7 @@ namespace Bme121
         }
 
         // Comparison method - returns -1, 0, +1 if 'a' is <, =, > 'b', respectively.
-
+        
         static int Compare(int a, int b)
         {
             return a.CompareTo(b);
@@ -214,7 +219,7 @@ namespace Bme121
 
         // Test sorting where all algorithms use the same random array.
 
-        public static void Main()
+        static void Main()
         {
             int[] data;
             Stopwatch timer;
