@@ -93,6 +93,8 @@ namespace Bme121
                 {
                     if (Compare(a[i], a[min]) < 0) min = i;
                     reads+=2;
+                    compares++;
+                    writes++;
                 }
 
                 int temp = a[firstUnsorted];
