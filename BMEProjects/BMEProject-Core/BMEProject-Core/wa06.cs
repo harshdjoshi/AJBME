@@ -182,32 +182,29 @@ namespace Bme121
                 Console.WriteLine(cycleStart);
                 int item = a[cycleStart];
                 int pos = Rank(item, skip: cycleStart);
-
                 bool cycleDone = false;
                 while (!cycleDone)
                 {
-                    if (pos == cycleStart)
+                   if (pos == cycleStart)
                     {
                         cycleDone = true;
                     }
                     else /* ( pos != cycleStart ) */
                     {
-                        while (a[pos] == item)
+                        while (item == a[pos] && pos != cycleStart)
                         {
-                            if (pos == a.Length - 1)
-                            {
-                                cycleDone = true;
-                                break;
-                            }
-                            pos++;
+                           pos += 1;
                         }
-                        
-                        var temp = a[pos];
-                        a[pos] = item;
-                        pos = Rank(temp, pos);
-                        //something is off here (look at rank or assignment)
-                        item = temp;
-                        writes++;
+
+                        if (item != a[pos])
+                        {
+                            int temp = item;
+                            item = a[pos];
+                            a[pos] = temp;
+                            a[cycleStart] = item;
+                            pos = Rank(item, cycleStart);
+                            writes++;
+                        }
                     }
                 }
             }
@@ -281,7 +278,7 @@ namespace Bme121
 
             timer = new Stopwatch();
             timer.Start();
-            CycleSort(data);
+            CycleSort(new []{8,3,6,3,5,3,0,9});
             timer.Stop();
 
             WriteLine("Cycle sort, sorted array");
