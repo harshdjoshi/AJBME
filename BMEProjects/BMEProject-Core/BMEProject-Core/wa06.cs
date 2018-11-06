@@ -92,11 +92,14 @@ namespace Bme121
                 for (int i = firstUnsorted + 1; i < a.Length; i++)
                 {
                     if (Compare(a[i], a[min]) < 0) min = i;
+                    reads+=2;
                 }
 
                 int temp = a[firstUnsorted];
                 a[firstUnsorted] = a[min];
                 a[min] = temp;
+                reads += 2;
+                writes += 2;
             }
 
             WriteLine("Reads = {0:n0}, writes = {1:n0}, compares = {2:n0}", reads, writes, compares);
@@ -171,6 +174,8 @@ namespace Bme121
                     if (i != skip)
                     {
                         if (Compare(value, a[i]) > 0) result++;
+                        reads++;
+                        compares++;
                     }
                 }
 
@@ -179,8 +184,8 @@ namespace Bme121
 
             for (int cycleStart = 0; cycleStart < a.Length; cycleStart++)
             {
-                Console.WriteLine(cycleStart);
                 int item = a[cycleStart];
+                writes++;
                 int pos = Rank(item, skip: cycleStart);
                 bool cycleDone = false;
                 while (!cycleDone)
@@ -194,6 +199,7 @@ namespace Bme121
                         while (item == a[pos] && pos != cycleStart)
                         {
                            pos += 1;
+                           reads++;
                         }
 
                         if (item != a[pos])
@@ -201,9 +207,9 @@ namespace Bme121
                             int temp = item;
                             item = a[pos];
                             a[pos] = temp;
-                            a[cycleStart] = item;
                             pos = Rank(item, cycleStart);
                             writes++;
+                            reads++;
                         }
                     }
                 }
@@ -215,6 +221,7 @@ namespace Bme121
         
         static int Compare(int a, int b)
         {
+            
             return a.CompareTo(b);
         }
 
@@ -278,7 +285,7 @@ namespace Bme121
 
             timer = new Stopwatch();
             timer.Start();
-            CycleSort(new []{8,3,6,3,5,3,0,9});
+            CycleSort(data);
             timer.Stop();
 
             WriteLine("Cycle sort, sorted array");
