@@ -6,5 +6,3 @@ D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProjects\obj\Debug\BMEProject
 D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProjects\obj\Debug\BMEProjects.pdb
 C:\Users\akanksha.joshi.JOSHI\Source\Repos\harshdjoshi\AJBME\BMEProjects\BMEProjects\obj\Debug\BMEProjects.csprojAssemblyReference.cache
 C:\Users\akanksha.joshi.JOSHI\Source\Repos\harshdjoshi\AJBME\BMEProjects\BMEProjects\obj\Debug\BMEProjects.csproj.CoreCompileInputs.cache
-C:\Users\akanksha.joshi.JOSHI\Source\Repos\harshdjoshi\AJBME\BMEProjects\BMEProjects\obj\Debug\BMEProjects.exe
-C:\Users\akanksha.joshi.JOSHI\Source\Repos\harshdjoshi\AJBME\BMEProjects\BMEProjects\obj\Debug\BMEProjects.pdb
