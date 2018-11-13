@@ -6,4 +6,14 @@
     <RootNamespace>BMEProject_Core</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="RXQT1503.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="RXQT1503.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

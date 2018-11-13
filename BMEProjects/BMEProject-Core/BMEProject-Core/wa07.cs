@@ -1,7 +1,8 @@
+
 using System;
 using System.IO;
+using System.Linq;
 using static System.Console;
-
 using MediCal;
 using DataStructures;
 
@@ -10,9 +11,18 @@ namespace DataStructures
     partial class LinkedList
     {
         // Method forms a sub-list of Drug objects satisfying a target predicate.
-        public delegate LinkedList SubList( )
+        public LinkedList SubList(Func<Drug,bool> predicate = null)
         {
-            return new LinkedList( );
+            if (predicate == null)
+                return this;
+            LinkedList drugSubList = new LinkedList();
+            var drugdata = this.ToArray().Where(predicate);
+            foreach (var drug in drugdata)
+            {
+                drugSubList.AddLast(drug);
+            }
+
+            return drugSubList;
         }
     }
 }
@@ -56,12 +66,12 @@ namespace Bme121
             WriteLine( "allDrugs.Count = {0}", allDrugs.Count );
 
             // Form a sub-list of Temazipam capsules.
-            LinkedList subDrugs1 = allDrugs.SubList( );
+            LinkedList subDrugs1 = allDrugs.SubList(IsLorazepamTablet );
             WriteLine( "subDrugs1.Count = {0}", subDrugs1.Count );
             foreach( Drug d in subDrugs1.ToArray( ) ) WriteLine( d );
 
             // Form a sub-list of Lorazepam tablets.
-            LinkedList subDrugs2 = allDrugs.SubList( );
+            LinkedList subDrugs2 = allDrugs.SubList( IsTemazipamCapusule);
             WriteLine( "subDrugs2.Count = {0}", subDrugs2.Count );
             foreach( Drug d in subDrugs2.ToArray( ) ) WriteLine( d );
         }

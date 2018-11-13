@@ -11,4 +11,9 @@ C:\Users\akanksha.joshi.JOSHI\Source\Repos\harshdjoshi\AJBME\BMEProjects\BMEProj
 D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProjects\obj\Debug\BMEProjects.csprojAssemblyReference.cache
 D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProjects\bin\Debug\lung.csv
 C:\AkankshaBME\AJBME\BMEProjects\BMEProjects\obj\Debug\BMEProjects.csproj.CoreCompileInputs.cache
-C:\AkankshaBME\AJBME\BMEProjects\BMEProjects\obj\Debug\BMEProjects.csprojAssemblyReference.cache
+C:\AkankshaBME\AJBME\BMEProjects\BMEProjects\bin\Debug\lung.csv
+C:\AkankshaBME\AJBME\BMEProjects\BMEProjects\bin\Debug\BMEProjects.exe.config
+C:\AkankshaBME\AJBME\BMEProjects\BMEProjects\bin\Debug\BMEProjects.exe
+C:\AkankshaBME\AJBME\BMEProjects\BMEProjects\bin\Debug\BMEProjects.pdb
+C:\AkankshaBME\AJBME\BMEProjects\BMEProjects\obj\Debug\BMEProjects.exe
+C:\AkankshaBME\AJBME\BMEProjects\BMEProjects\obj\Debug\BMEProjects.pdb

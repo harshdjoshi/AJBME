@@ -4,7 +4,7 @@ using System.Linq;
 
 using static System.Console;
 
-namespace Bme121
+namespace Bme121_wa06
 {
     static class Program
     {
@@ -229,7 +229,7 @@ namespace Bme121
 
         // Test sorting where all algorithms use the same random array.
 
-        static void Main()
+        static void MainWa06()
         {
             int[] data;
             Stopwatch timer;
