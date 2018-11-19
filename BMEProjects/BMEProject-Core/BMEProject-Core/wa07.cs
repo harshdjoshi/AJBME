@@ -44,7 +44,7 @@ namespace Bme121
         }
 
         // Test the 'LinkedList.SubList' method.
-        static void Main( )
+        static void MainWa07( )
         {
             // Parameters for reading the drug file.
             const string path = "RXQT1503.txt";

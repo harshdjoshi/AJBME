@@ -195,7 +195,7 @@ namespace DataStructures
 
 namespace Bme121
 {
-    static class Program
+    static class ProgramWa07
     {
         static void Main( )
         {
