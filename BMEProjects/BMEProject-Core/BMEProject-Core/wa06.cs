@@ -187,6 +187,7 @@ namespace Bme121
             for (int cycleStart = 0; cycleStart < a.Length; cycleStart++)
             {
                 int item = a[cycleStart];
+                reads++;
                 writes++;
                 int pos = Rank(item, skip: cycleStart);
                 bool cycleDone = false;

@@ -6,4 +6,8 @@
     <RootNamespace>BMEProject_Core</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="wa06.cs" />
+  </ItemGroup>
+
 </Project>
