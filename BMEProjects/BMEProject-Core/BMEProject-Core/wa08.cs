@@ -17,19 +17,20 @@ namespace DataStructures
         private TData NodeToRemove { get; set; }
         private Node Tail { get; set; }
         private Node Head { get; set; }
-        public void Add(TData item)
+
+        void ICollection<TData>.Add(TData item)
         {
             AddLast(item);
         }
 
-        public void Clear()
+        void ICollection<TData>.Clear()
         {
             Head = null;
             Tail = null;
             Count = 0;
         }
 
-        public bool Contains(TData item)
+        bool ICollection<TData>.Contains(TData item)
         {
             return Find(item) != null;
         }
@@ -46,7 +47,8 @@ namespace DataStructures
             }
             return null;
         }
-        public void CopyTo(TData[] array, int arrayIndex)
+
+        void ICollection<TData>.CopyTo(TData[] array, int arrayIndex)
         {
             Node node = Head;
             while (node != null)
@@ -60,14 +62,22 @@ namespace DataStructures
         {
             return currentNode.Equals(NodeToRemove);
         }
-        public bool Remove(TData item)
+
+        bool ICollection<TData>.Remove(TData item)
         {
             NodeToRemove = item;
             bool removed =  RemoveFirst(IsTarget, out item);
             return removed;
         }
-        public  int Count { get; private set; }
-        public bool IsReadOnly { get; }
+
+        private int Count { get; set; }
+
+        int ICollection<TData>.Count
+        {
+            get { return this.Count; }
+        }
+
+        bool ICollection<TData>.IsReadOnly { get; }
 
         public LinkedList( ) { Tail = null; Head = null; Count = 0; }
 
