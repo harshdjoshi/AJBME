@@ -207,7 +207,7 @@ namespace Bme121
 {
     static class ProgramWa07
     {
-        static void Main( )
+        static void Mainwa07( )
         {
             DataStructures.LinkedList< int > intList = new DataStructures.LinkedList< int >( );
 

@@ -36,14 +36,13 @@ namespace Bme121
         {
             Image<Rgba32> img6L = Image.Load<Rgba32>(path);
 
-            int tileRows = (int)Math.Ceiling((double)img6L.Height / Tile.Len);
-            int tileCols = (int)Math.Ceiling((double)img6L.Width / Tile.Len);
+            Height = (int)Math.Ceiling((double)img6L.Height / Tile.Len);
+            Width = (int)Math.Ceiling((double)img6L.Width / Tile.Len);
+            Tiles = new Tile[Height, Width];
 
-            Tiles = new Tile[tileRows, tileCols];
-
-            for (int tileRow = 0; tileRow < tileRows; tileRow++)
+            for (int tileRow = 0; tileRow < Height; tileRow++)
             {
-                for (int tileCol = 0; tileCol < tileCols; tileCol++)
+                for (int tileCol = 0; tileCol < Width; tileCol++)
                 {
                     Tiles[tileRow, tileCol] = new Tile();
 
@@ -51,7 +50,7 @@ namespace Bme121
                     {
                         for (int col = 0; col < Tile.Len; col++)
                         {
-                            if (tileRow * Tile.Len + row >= Height || tileCol * Tile.Len + col >= Width)
+                            if (tileRow * Tile.Len + row >= img6L.Height || tileCol * Tile.Len + col >= img6L.Width)
                             {
                                 Tiles[tileRow, tileCol].Pixels[row, col] = Color.FromArgb(255, 0, 0, 0);
                             }
@@ -81,16 +80,22 @@ namespace Bme121
 
         public void SaveToFile(string path)
         {
-            Image<Rgba32> img6L = new Image<Rgba32>(Pixels.GetLength(1), Pixels.GetLength(0));
-
-            for (int x = 0; x < img6L.Width; x++)
+            Image<Rgba32> img6L = new Image<Rgba32>(Width * Tile.Len, Height* Tile.Len);
+            for (int x = 0; x < Width; x++)
             {
-                for (int y = 0; y < img6L.Height; y++)
+                for (int y = 0; y < Height; y++)
                 {
-                    Color c = Pixels[y, x];
-
-                    Rgba32 p = new Rgba32(c.R, c.G, c.B, c.A);
-                    img6L[x, y] = p;
+                    Color[,] c = Tiles[y, x].Pixels;
+                    for (int k = 0; k < Tile.Len; k++)
+                    {
+                        for (int l = 0; l < Tile.Len; l++)
+                        {
+                            Rgba32 p = new Rgba32(c[k,l].R, c[k, l].G, c[k, l].B, c[k, l].A);
+                            var posY = x * Tile.Len + k;
+                            var posX = y * Tile.Len + l;
+                            img6L[posX, posY] = p;
+                        }
+                    }
                 }
             }
 

@@ -29,7 +29,7 @@ namespace DataStructures
 
 namespace Bme121
 {
-    static class Program
+    static class Programwa07
     {
         // Test a drug name for Lorazepam tablet.
         public static bool IsLorazepamTablet( Drug d )
