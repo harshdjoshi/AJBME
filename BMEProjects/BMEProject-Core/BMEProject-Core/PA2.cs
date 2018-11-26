@@ -85,7 +85,7 @@ namespace Bme121
             {
                 for (int y = 0; y < Height; y++)
                 {
-                    Color[,] c = Tiles[y, x].Pixels;
+                    Color[,] c = Tiles[x, y].Pixels;
                     for (int k = 0; k < Tile.Len; k++)
                     {
                         for (int l = 0; l < Tile.Len; l++)
@@ -93,7 +93,7 @@ namespace Bme121
                             Rgba32 p = new Rgba32(c[k,l].R, c[k, l].G, c[k, l].B, c[k, l].A);
                             var posY = x * Tile.Len + k;
                             var posX = y * Tile.Len + l;
-                            img6L[posX, posY] = p;
+                            img6L[posY, posX] = p;
                         }
                     }
                 }
