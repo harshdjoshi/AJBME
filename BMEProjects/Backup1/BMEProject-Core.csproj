@@ -4,8 +4,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <RootNamespace>BMEProject_Core</RootNamespace>
     <FileUpgradeFlags>40</FileUpgradeFlags>
-    <UpgradeBackupLocation>C:\Users\akanksha.joshi.JOSHI\Source\Repos\harshdjoshi\AJBME\BMEProjects\Backup1\</UpgradeBackupLocation>
-    <OldToolsVersion>15.0</OldToolsVersion>
+    <UpgradeBackupLocation>C:\Users\akanksha.joshi.JOSHI\Source\Repos\harshdjoshi\AJBME\BMEProjects\Backup\BMEProject-Core\BMEProject-Core\</UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="wa06.cs" />
