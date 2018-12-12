@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Linq; // for the 'Contains' method on line 32
+using System.Linq;
+using System.Net.NetworkInformation;
+// for the 'Contains' method on line 32
 
 using static System.Console;
 
@@ -57,8 +59,28 @@ namespace Bme121
             if (a.Length < 2) return 0;
 
             int result = 0;
+            int duplicates = 0;
+            for (int cycleStart = 0; cycleStart < a.Length; cycleStart++)
+            {
+                int item = a[cycleStart];
+                int pos = 0;
+                
+                for (int i = 0; i < a.Length; i++)
+                {
+                    if (i != cycleStart)
+                    {
+                        if (Compare(item, a[i]) > 0) pos++;
+                        if (item == a[i])
+                        {
+                            duplicates++;
+                        }
+                    }
 
-            // TO DO: complete code to compute result (disorder of 'a').
+                }
+
+                result += Math.Abs(pos - cycleStart);
+                //pending for non unique
+            }
 
             return result;
         }
