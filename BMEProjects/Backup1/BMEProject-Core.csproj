@@ -4,14 +4,9 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <RootNamespace>BMEProject_Core</RootNamespace>
     <FileUpgradeFlags>40</FileUpgradeFlags>
-    <UpgradeBackupLocation>C:\Users\akanksha.joshi.JOSHI\Source\Repos\harshdjoshi\AJBME\BMEProjects\Backup1\</UpgradeBackupLocation>
-    <OldToolsVersion>15.0</OldToolsVersion>
+    <UpgradeBackupLocation>C:\Users\akanksha.joshi.JOSHI\Source\Repos\harshdjoshi\AJBME\BMEProjects\Backup\BMEProject-Core\BMEProject-Core\</UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Remove="Data\**" />
-    <EmbeddedResource Remove="Data\**" />
-    <None Remove="Data\**" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Remove="wa06.cs" />
   </ItemGroup>
@@ -26,5 +21,8 @@
   <ItemGroup>
     <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0005" />
     <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0005" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\" />
   </ItemGroup>
 </Project>
