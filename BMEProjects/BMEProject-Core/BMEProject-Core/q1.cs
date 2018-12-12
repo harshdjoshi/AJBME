@@ -1,11 +1,55 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using static System.Console;
 
-namespace BMEProject_Core
+using DataStructures;
+
+namespace DataStructures
 {
-    class q1
+    partial class LinkedList<TData>
     {
-       //test
+        // Method to find the k-th element in the list.
+        // For positive k, count forwards from the head.
+        // For negative k, count backwards from the null after the tail.
+        // TO DO:
+
+
+    }
+}
+
+namespace Bme121
+{
+    static class Program
+    {
+        static Random rGen = new Random();
+
+        static void Main()
+        {
+            // Create an empty linked list of integers.
+
+            LinkedList<int> myList = new LinkedList<int>();
+
+            // Add random integer values to the linked list, then display it.
+
+            for (int count = 0; count < 16; count++) myList.AddLast(rGen.Next(100));
+            WriteLine();
+            Write("myList:");
+            foreach (int number in myList.ToArray())
+            {
+                Write(" {0,2}", number);
+            }
+            WriteLine();
+
+            // Find and display the k-th element for various values of k.
+
+            WriteLine();
+            foreach (int k in new int[] { 0, 1, -1, 2, -2, 5, -5, 10, -10, 20, -20 })
+            {
+                bool found = myList.TryFindKth(k, out int kthItem);
+                WriteLine("k = {0,3}, myList.TryFindKth( k, out int kthItem ) = {1,5}, kthItem = {2,2}",
+                    k, found, kthItem);
+            }
+
+            WriteLine();
+        }
     }
 }
