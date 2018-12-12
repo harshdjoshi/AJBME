@@ -6,5 +6,6 @@ namespace BMEProject_Core
 {
     class q1
     {
+        //added a comment
     }
 }
