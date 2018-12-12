@@ -18,7 +18,6 @@ C:\AkankshaBME\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\bin\Debug\netco
 C:\AkankshaBME\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\bin\Debug\netcoreapp2.1\BMEProject-Core.pdb
 C:\AkankshaBME\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\obj\Debug\netcoreapp2.1\BMEProject-Core.dll
 C:\AkankshaBME\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\obj\Debug\netcoreapp2.1\BMEProject-Core.pdb
-C:\AkankshaBME\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\bin\Debug\netcoreapp2.1\RXQT1503.txt
-C:\AkankshaBME\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\obj\Debug\netcoreapp2.1\BMEProject-Core.csprojAssemblyReference.cache
 D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\bin\Debug\netcoreapp2.1\20051020_63711_0100_PP.png
 D:\Akanksha BME\Collaboration\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\obj\Debug\netcoreapp2.1\BMEProject-Core.csprojAssemblyReference.cache
+C:\AkankshaBME\AJBME\BMEProjects\BMEProject-Core\BMEProject-Core\bin\Debug\netcoreapp2.1\20051020_63711_0100_PP.png

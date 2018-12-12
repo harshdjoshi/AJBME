@@ -927,23 +927,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\harsh.joshi\\.nuget\\packages\\": {},
+    "C:\\Users\\HarshJoshi\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Akanksha BME\\Collaboration\\AJBME\\BMEProjects\\BMEProject-Core\\BMEProject-Core\\BMEProject-Core.csproj",
+      "projectUniqueName": "C:\\AkankshaBME\\AJBME\\BMEProjects\\BMEProject-Core\\BMEProject-Core\\BMEProject-Core.csproj",
       "projectName": "BMEProject-Core",
-      "projectPath": "D:\\Akanksha BME\\Collaboration\\AJBME\\BMEProjects\\BMEProject-Core\\BMEProject-Core\\BMEProject-Core.csproj",
-      "packagesPath": "C:\\Users\\harsh.joshi\\.nuget\\packages\\",
-      "outputPath": "D:\\Akanksha BME\\Collaboration\\AJBME\\BMEProjects\\BMEProject-Core\\BMEProject-Core\\obj\\",
+      "projectPath": "C:\\AkankshaBME\\AJBME\\BMEProjects\\BMEProject-Core\\BMEProject-Core\\BMEProject-Core.csproj",
+      "packagesPath": "C:\\Users\\HarshJoshi\\.nuget\\packages\\",
+      "outputPath": "C:\\AkankshaBME\\AJBME\\BMEProjects\\BMEProject-Core\\BMEProject-Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\harsh.joshi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\HarshJoshi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
