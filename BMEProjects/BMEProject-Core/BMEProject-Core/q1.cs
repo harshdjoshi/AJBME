@@ -11,7 +11,24 @@ namespace DataStructures
         // For positive k, count forwards from the head.
         // For negative k, count backwards from the null after the tail.
         // TO DO:
+        public bool TryFindKth(int k, out TData kthItem)
+        {
+            kthItem = default(TData);
+            var listArray = this.ToArray();
+            if (Math.Abs(k) > listArray.Length)
+            {
+                return false;
+            }
 
+            int kPos = k;
+            if (k < 0)
+            {
+                kPos = listArray.Length + k;
+            }
+
+            kthItem = listArray[kPos];
+            return true;
+        }
 
     }
 }
