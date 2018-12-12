@@ -1,10 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.IO;
 
-namespace BMEProject_Core
+using static System.Console;
+
+namespace Bme121
 {
-    class q4
+    static class Program
     {
+        static void Main()
+        {
+            const string path = "TheEnd.txt";
+
+        }
     }
 }
