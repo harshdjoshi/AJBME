@@ -29,6 +29,9 @@
     <ClCompile Include="AJBMECPlus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Lab1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Assignments\PracticeExercise#1-W19.pdf" />
