@@ -21,7 +21,7 @@ public:
 	}
 
 
-	bool operator==(const Artwork & target) {
+	bool operator==(const Artwork& target) {
 		bool are_equal = true;
 		are_equal = are_equal && (artist_name == target.artist_name);
 		are_equal = are_equal && (title == target.title);
@@ -44,7 +44,7 @@ public:
 		customer_name(new_customer), customer_address(new_address), sale_amount(new_amount) {
 	}
 
-	bool operator==(const SoldArtwork & target) {
+	bool operator==(const SoldArtwork& target) {
 		bool are_equal = true;
 		are_equal = are_equal && (customer_name == target.customer_name);
 		are_equal = are_equal && (customer_address == target.customer_address);
@@ -59,7 +59,7 @@ class ArtCollection {
 	vector<SoldArtwork> soldArtworks;
 
 public:
-	bool insert_artwork(Artwork & artwork_info) {
+	bool insert_artwork(Artwork& artwork_info) {
 		for (int index = 0; index < artworks.size(); ++index) {
 			if (artwork_info == artworks[index]) {
 				break;
@@ -79,16 +79,31 @@ public:
 		soldArtworks.push_back(artwork_info);
 	}
 
-	bool operator==(const ArtCollection & target) {
+	bool operator==(const ArtCollection& target) {
 		bool are_equal = true;
+		for (int index = 0; index < target.artworks.size(); ++index)
+		{
+			are_equal = static_cast<Artwork>(target.artworks[index]) == static_cast<Artwork>(artworks[index]);
+			if (are_equal==false) {
+				break;
+			}
+		}
+		for (int index = 0; index < target.soldArtworks.size(); ++index)
+		{
+			are_equal = static_cast<SoldArtwork>(target.soldArtworks[index]) == static_cast<SoldArtwork>(soldArtworks[index]);
+			if (are_equal == false) {
+				break;
+			}
+		}
+		/*
 		for (artwork1 : this.artworks) {
 			for (artwork2 : target.artworks) {
 				if (artwork1 == artwork2) {
 
 				}
 			}
-		}
-		are_equal = are_equal && (this. == target);
+		}*/
+		//are_equal = are_equal && (this. == target);
 		return are_equal;
 	}
 
