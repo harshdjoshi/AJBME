@@ -40,8 +40,10 @@ public:
 		sale_amount = 0;
 	}
 	// parametric constructor
-	SoldArtwork(string new_customer, string new_address, double new_amount, string new_artist, string new_title, unsigned int new_year) 
-		customer_name(new_customer), customer_address(new_address), sale_amount(new_amount) {
+	SoldArtwork(string new_customer, string new_address, double new_amount, string new_artist, string new_title, unsigned int new_year)
+		:Artwork(new_artist,new_title,new_year)
+	{
+		customer_name = new_customer, customer_address = new_address, sale_amount = new_amount;
 	}
 
 	bool operator==(const SoldArtwork& target) {
@@ -76,16 +78,21 @@ public:
 	}
 
 	bool sell_artwork(SoldArtwork & artwork_info) {
-		static_cast<Artwork>(artwork_info);
+		bool artWorkExists = false;
+		Artwork createdArtwork = static_cast<Artwork>(artwork_info);
 		int collectionSize = artworks.size();
 		for (int index = 0; index < collectionSize; ++index) {
-			if (artworks[index] == artwork_info) {
+			if (artworks[index] == createdArtwork) {
+				artWorkExists = true;
 				artworks.erase(artworks.begin() + index);
-				--index;
+				break;				
 			}
 		}
-		soldArtworks.push_back(artwork_info);
-		return artworks.size() == collectionSize + 1;
+		if (artWorkExists) {
+			soldArtworks.push_back(artwork_info);
+			return true;
+		}
+		return false;
 	}
 
 	bool operator==(const ArtCollection& target) {
@@ -126,7 +133,33 @@ public:
 
 class TestArtworkCollection {
 public:
+	
+	//Test return type of insert
 	void test_insert_artwork() {
+		Artwork akArt = Artwork("ak_j", "romance_with_bme", 2017);
+		ArtCollection collection = ArtCollection();
+		_ASSERT(collection.insert_artwork(akArt) == true);
+		_ASSERT(collection.insert_artwork(akArt) == false);
+	}
+
+	//Test return type for sell
+	void test_sell_artwork() {
+		SoldArtwork akArtSold = SoldArtwork("Monet", "Waterloo-A", 1000, "ak_j", "romance_with_bme", 2017);
+		SoldArtwork akFakeArtSold = SoldArtwork("Monet", "Waterloo-A", 5000, "fakeArtist", "mybme", 2017);
+		Artwork akArt = Artwork("ak_j", "romance_with_bme", 2017);
+		ArtCollection collection = ArtCollection();
+		//create artwork collection
+		collection.insert_artwork(akArt);
+		//sell fake art
+		_ASSERT(collection.sell_artwork(akFakeArtSold) == false);
+		//sell artwork
+		_ASSERT(collection.sell_artwork(akArtSold)==true);
+		_ASSERT(collection.sell_artwork(akArtSold) == false);
+		
+	}
+
+	//Test insert collection
+	void test_insert_artwork_collections() {
 		Artwork akArt = Artwork("ak_j", "romance_with_bme", 2017);
 		Artwork ajArt = Artwork("ak_jo", "romance_with_engineering", 2018);
 		Artwork ajoArt = Artwork("ak_jo", "romance_with_programming", 2019);
@@ -142,16 +175,39 @@ public:
 		collection.insert_artwork(ajoArt);
 		collection.insert_artwork(ajoArt);
 		_ASSERT(collection.artworks.size() == 3);
-	}
-	void test_sell_artwork() {
-		SoldArtwork akArt = SoldArtwork("ak_j", "romance_with_bme", 2017);
-		SoldArtwork ajArt = SoldArtwork("ak_jo", "romance_with_engineering", 2018);
-		SoldArtwork ajoArt = SoldArtwork("ak_jo", "romance_with_programming", 2019);
+	}	
 
+	//Test sell collection
+	void test_sell_artwork_collections() {
+		SoldArtwork akArtSold = SoldArtwork("Monet","Waterloo-A",1000,"ak_j", "romance_with_bme", 2017);
+		SoldArtwork ajArtSold = SoldArtwork("Picasso", "Waterloo-B", 3000, "ak_jo", "romance_with_engineering", 2018);
+		SoldArtwork ajoArtSold = SoldArtwork("DaVinci", "Waterloo-C", 5000, "ak_jo", "romance_with_programming", 2019);
+		Artwork akArt = Artwork("ak_j", "romance_with_bme", 2017);
+		Artwork ajArt = Artwork("ak_jo", "romance_with_engineering", 2018);
+		Artwork ajoArt = Artwork("ak_jo", "romance_with_programming", 2019);
+		ArtCollection collection = ArtCollection();
+
+		//create artwork collection
+		collection.insert_artwork(akArt);
+		collection.insert_artwork(ajArt);
+		collection.insert_artwork(ajoArt);
+
+		//sell artwork
+		collection.sell_artwork(ajoArtSold);
+		collection.sell_artwork(akArtSold);
+		collection.sell_artwork(ajArtSold);
+		_ASSERT(collection.soldArtworks.size() == 3);
+		//try selling artwork that does not exists
+		SoldArtwork ajoFakeArtSold = SoldArtwork("DaVinci", "Waterloo-C", 5000, "ak_jo", "no_romance_with_programming", 2016);
+		collection.sell_artwork(ajoFakeArtSold);
+		_ASSERT(collection.soldArtworks.size() == 3);
 	}
+	
 	void run() {
 		test_insert_artwork();
 		test_sell_artwork();
+		test_insert_artwork_collections();
+		test_sell_artwork_collections();
 	}
 };
 
