@@ -1,4 +1,4 @@
-
+#include "stdafx.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -107,12 +107,20 @@ public:
 		return are_equal;
 	}
 
-	friend ArtCollection operator+(const ArtCollection & target) {
+	friend ArtCollection operator+(const ArtCollection& target) {
 
+
+		
+		target.artworks.insert(target.artworks.end(), std::make_move_iterator(artworks.begin()), std::make_move_iterator(artworks.end()));
+		target.soldArtworks.insert(target.soldArtworks.end(), std::make_move_iterator(soldArtworks.begin()), std::make_move_iterator(soldArtworks.end()));
+		return target;
 	}
 };
 
-int main()
+class TestArtWorkCollection
 {
+	int main()
+	{
 
-}
+	}
+};
