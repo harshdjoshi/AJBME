@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-//#include <_ASSERT.h>
+//#include <__ASSERT.h>
 
 using namespace std;
 
@@ -200,100 +200,126 @@ ArtCollection operator+(const ArtCollection &target1, const ArtCollection &targe
 
 class TestArtworkCollection {
 public:
-	//Test return type of insert
+	//Test insert artwork - check return type
 	void test_insert_artwork() {
-		Artwork akArt = Artwork("ak_j", "romance_with_bme", 2017);
+		Artwork artOne = Artwork("Vermeer", "Girl with the Pearl Earring", 1665);
 		ArtCollection collection = ArtCollection();
-		_ASSERT(collection.insert_artwork(akArt) == true);
-		_ASSERT(collection.insert_artwork(akArt) == false);
+		_ASSERT(collection.insert_artwork(artOne) == true);
+		_ASSERT(collection.insert_artwork(artOne) == false);
 	}
 
-	//Test return type for sell
+	//Test sell artwork - check return type
 	void test_sell_artwork() {
-		SoldArtwork akArtSold = SoldArtwork("Monet", "Waterloo-A", 1000, "ak_j", "romance_with_bme", 2017);
-		SoldArtwork akFakeArtSold = SoldArtwork("Monet", "Waterloo-A", 5000, "fakeArtist", "mybme", 2017);
-		Artwork akArt = Artwork("ak_j", "romance_with_bme", 2017);
+		//Create artwork and sold artwork
+		Artwork artTwo = Artwork("Whistler", "Whistler's Mother'", 1871);
+		SoldArtwork artTwoSold = SoldArtwork("Mr. A", "Waterloo", 1000, "Whistler", "Whistler's Mother'", 1871);
+		//Create non-existant art to sell
+		SoldArtwork fakeArtSold = SoldArtwork("Mr. A", "Waterloo", 1000, "fakeArtist", "fake", 2019);
+		//Create artwork collection
 		ArtCollection collection = ArtCollection();
-		//create artwork collection
-		collection.insert_artwork(akArt);
-		//sell fake art
-		_ASSERT(collection.sell_artwork(akFakeArtSold) == false);
-		//sell artwork
-		_ASSERT(collection.sell_artwork(akArtSold) == true);
-		_ASSERT(collection.sell_artwork(akArtSold) == false);
+		collection.insert_artwork(artTwo);
+		//Sell fake artwork - check that it is false
+		_ASSERT(collection.sell_artwork(fakeArtSold) == false);
+		//Sell artwork - check that it is true
+		_ASSERT(collection.sell_artwork(artTwoSold) == true);
+		//Try selling the same artwork again - should be false
+		_ASSERT(collection.sell_artwork(artTwoSold) == false);
 
 	}
 
-	//Test collection size
+	//Test the size of an Art Collection when inserting artwork
 	void test_insert_artwork_collections() {
-		Artwork akArt = Artwork("ak_j", "romance_with_bme", 2017);
-		Artwork ajArt = Artwork("ak_jo", "romance_with_engineering", 2018);
-		Artwork ajoArt = Artwork("ak_jo", "romance_with_programming", 2019);
+		//Create artwork
+		Artwork artThree = Artwork("Klimt", "Woman in Gold", 1907);
+		Artwork artFour = Artwork("Da Vinci", "Mona Lisa", 1503);
+		Artwork artFive = Artwork("Botticelli", "Birth of Venus", 1484);
+		//Create a new art collection
 		ArtCollection collection = ArtCollection();
-		collection.insert_artwork(akArt);
-		collection.insert_artwork(ajArt);
+		//Insert artwork
+		collection.insert_artwork(artThree);
+		collection.insert_artwork(artFour);
+		//Check the collection artwork vector size - should be two
 		_ASSERT(collection.getArtworksSize() == 2);
-		collection.insert_artwork(akArt);
+		//Try inserting artwork that is already in the collection - duplicate
+		collection.insert_artwork(artThree);
+		//Check the collection artwork vector size - should still be two
 		_ASSERT(collection.getArtworksSize() == 2);
-		collection.insert_artwork(ajoArt);
+		//Insert new piece of art
+		collection.insert_artwork(artFive);
+		//Check the collection artwork vector size - should be three now
 		_ASSERT(collection.getArtworksSize() == 3);
-		collection.insert_artwork(ajoArt);
-		collection.insert_artwork(ajoArt);
-		collection.insert_artwork(ajoArt);
+		//Add duplicate values again
+		collection.insert_artwork(artThree);
+		collection.insert_artwork(artFour);
+		collection.insert_artwork(artFive);
+		//Check the collection artwork vector size - should still be three
 		_ASSERT(collection.getArtworksSize() == 3);
 	}
 
-	//Test collection size for sold artwork
+	//Test the size of an Art Collection when selling artwork
 	void test_sell_artwork_collections() {
-		SoldArtwork akArtSold = SoldArtwork("Monet", "Waterloo-A", 1000, "ak_j", "romance_with_bme", 2017);
-		SoldArtwork ajArtSold = SoldArtwork("Picasso", "Waterloo-B", 3000, "ak_jo", "romance_with_engineering", 2018);
-		SoldArtwork ajoArtSold = SoldArtwork("DaVinci", "Waterloo-C", 5000, "ak_jo", "romance_with_programming", 2019);
-		Artwork akArt = Artwork("ak_j", "romance_with_bme", 2017);
-		Artwork ajArt = Artwork("ak_jo", "romance_with_engineering", 2018);
-		Artwork ajoArt = Artwork("ak_jo", "romance_with_programming", 2019);
+		//Create new artwork
+		Artwork artSix = Artwork("Dali", "Persistence of Memory", 1931);
+		Artwork artSeven = Artwork("Kandinsky", "Composition 8", 1923);
+		Artwork artEight = Artwork("Renoir", "Moulin de la Galette", 1876);
+		SoldArtwork artSixSold = SoldArtwork("Mr. B", "Calgary", 1000, "Dali", "Persistence of Memory", 1931);
+		SoldArtwork artSevenSold = SoldArtwork("Mr. C", "Montreal", 3000, "Kandinsky", "Composition 8", 1923);
+		SoldArtwork artEightSold = SoldArtwork("Mr. D", "Vancouver", 5000, "Renoir", "Moulin de la Galette", 1876);
+		//Create a new Art Collection
 		ArtCollection collection = ArtCollection();
-
-		//create artwork collection
-		collection.insert_artwork(akArt);
-		collection.insert_artwork(ajArt);
-		collection.insert_artwork(ajoArt);
-
-		//sell artwork
-		collection.sell_artwork(ajoArtSold);
-		collection.sell_artwork(akArtSold);
-		collection.sell_artwork(ajArtSold);
+		//Insert artwork
+		collection.insert_artwork(artSix);
+		collection.insert_artwork(artSeven);
+		collection.insert_artwork(artEight);
+		//Sell artwork
+		collection.sell_artwork(artSixSold);
+		collection.sell_artwork(artSevenSold);
+		collection.sell_artwork(artEightSold);
+		//Check the size of the soldArtwork vector - should be 3
 		_ASSERT(collection.getSoldArtworksSize() == 3);
-		//try selling artwork that does not exist
-		SoldArtwork ajoFakeArtSold = SoldArtwork("DaVinci", "Waterloo-C", 5000, "ak_jo", "no_romance_with_programming", 2016);
-		collection.sell_artwork(ajoFakeArtSold);
+		//Try selling artwork that has already been sold - duplicate
+		collection.sell_artwork(artSixSold);
+		//Check the size of the soldArtwork vector - should still be 3
+		_ASSERT(collection.getSoldArtworksSize() == 3);
+		//Try selling artwork that does not exist
+		SoldArtwork fakeArtSold = SoldArtwork("Mr. E", "Ottawa", 5000, "fake artist", "fake artwork", 2019);
+		collection.sell_artwork(fakeArtSold);
+		//Check the size of the soldArtwork vector - should still be 3
 		_ASSERT(collection.getSoldArtworksSize() == 3);
 	}
 
+	//Test the + operator
 	void test_plus_operator_overloading() {
-		//Add two art collections using + operator
-		ArtCollection collection2 = ArtCollection();
+		//Create two art collections
 		ArtCollection collection1 = ArtCollection();
-		Artwork art1 = Artwork("Van Gogh,", "Starry Night", 1889);
-		Artwork ajArtCopy = Artwork("ak_jo", "romance_with_engineering", 2018);
-		Artwork ajArt = Artwork("ak_jo", "romance_with_engineering", 2018);
-		SoldArtwork art1Sold = SoldArtwork("Monet", "Waterloo-C", 5000, "Van Gogh,", "Starry Night", 1889);
-		SoldArtwork akArtSold = SoldArtwork("Monet", "Waterloo-A", 1000, "ak_j", "romance_with_bme", 2017);
-		SoldArtwork ajArtSold = SoldArtwork("Picasso", "Waterloo-B", 3000, "ak_jo", "romance_with_engineering", 2018);
-		SoldArtwork ajoArtSold = SoldArtwork("DaVinci", "Waterloo-C", 5000, "ak_jo", "romance_with_programming", 2019);
-		collection2.insert_artwork(art1);
-		collection1.insert_artwork(ajArt);
-		ArtCollection bigCollection = collection2 + collection1;
-		_ASSERT(bigCollection.getArtworksSize() == 2);
-		collection2.insert_artwork(ajArtCopy);
-		bigCollection = collection2 + collection1;
-		_ASSERT(bigCollection.getArtworksSize() == 2);
-
-		collection2.sell_artwork(ajArtSold);
-		collection1.sell_artwork(ajArtSold);
-		_ASSERT(bigCollection.getSoldArtworksSize() == 1);
-		_ASSERT(bigCollection.getArtworksSize() == 1);
-		collection2.sell_artwork(art1Sold);
-		_ASSERT(bigCollection.getSoldArtworksSize() == 2);
+		ArtCollection collection2 = ArtCollection();
+		//Create artwork
+		Artwork artNine = Artwork("Van Gogh,", "Starry Night", 1889);
+		Artwork artTen = Artwork("Munch", "The Scream", 1893);
+		Artwork artTenCopy = Artwork("Munch", "The Scream", 1893);
+		//Create sold artwork
+		SoldArtwork artNineSold = SoldArtwork("Mr. F", "Hamilton", 5000, "Van Gogh,", "Starry Night", 1889);
+		SoldArtwork artTenSold = SoldArtwork("Mr. G", "Toronto", 1000, "Munch", "The Scream", 1893);
+		//Insert artwork into the art collections
+		collection1.insert_artwork(artNine);
+		collection2.insert_artwork(artTen);
+		//Add both art collections together
+		ArtCollection combined = collection1 + collection2;
+		//Check the size of the artworks vector of the combined art collection - should be 2
+		_ASSERT(combined.getArtworksSize() == 2);
+		//Add a copy of artTen to collection1
+		collection1.insert_artwork(artTenCopy);
+		combined = collection1 + collection2;
+		//Check the size of the artworks vector of the combined art collection - should still be 2
+		_ASSERT(combined.getArtworksSize() == 2);
+		//Sell artwork from collections
+		collection1.sell_artwork(artNineSold);
+		collection2.sell_artwork(artTenSold);
+		combined = collection1 + collection2;
+		//Check the size of the soldArtworks vector of the combined art collection - should be 2
+		_ASSERT(combined.getSoldArtworksSize() == 2);
+		//Check the size of the artworks vector of the combined art collection - should be 0
+		_ASSERT(combined.getArtworksSize() == 1);
 	}
 
 	void run() {
