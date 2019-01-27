@@ -94,8 +94,8 @@ public:
 				int sumValue = result.data[i + j];
 				result.data[i + j] = resultValue+sumValue;
 			}
-		}		
-		return result;			
+		}
+		return result;
 	}
 	Polynomial derivative()
 	{
@@ -166,7 +166,18 @@ public:
 		Polynomial polyWithArray(testArray, 8);
 		return polyWithString == polyWithArray;
 	}
-	
+	bool test_multiply_operator() {
+
+		int testArray1[4] = { 5, 0, 10, 6 };
+		int testArray2[3] = { 1, 2, 4 };
+		int resultArray[6] = { 5, 10, 30, 26, 52, 24 };
+		Polynomial polyWithArray1(testArray1, 4);
+		Polynomial polyWithArray2(testArray2, 3);
+		Polynomial resultPoly(resultArray, 6);
+		
+		Polynomial returnPoly = polyWithArray1 * polyWithArray2;
+		return returnPoly==resultPoly;
+	}
 	void run() {
 		//test 1 - constructor with array
 		if (test_constructor_array())
@@ -183,17 +194,19 @@ public:
 			cout << "test_equals_operator Passed" << endl;
 		else
 			cout << "test_equals_operator Failed" << endl;
-		
+		//test 4 - test plus operator
+		if (test_multiply_operator())
+			cout << "test_multiply_operator Passed" << endl;
+		else
+			cout << "test_multiply_operator Failed" << endl;
 
 	}
 
 };
 int main(){
 	
-
-	//test constructor with array
 	PolynomialTest testClass = PolynomialTest();
 	testClass.run();	
-	cout << "\n\n";
+	cout << "\n";
 	return 0;
 }
