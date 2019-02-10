@@ -1,212 +1,284 @@
+//**********************************************************************
+// Student Names: Akanksha Joshi, Sydney Pothier
+//
+// BME 122 Lab: 1 Assignment: Polynomial
+// Filename: lab1_polynomial.cpp
+//
+// We hereby declare that this code, submitted for the course
+// BME 122, is a product of our own efforts. This coded solution has
+// not been plaigarized from other sources and has not been knowingly
+// plaigarized by others.
+//
+// Project: Polynomial Representation as an ADT
+// Purpose: Implement the mathematical concept of a polynomial
+// as an ADT using sequential list ADT as a template
+// Due Date: Monday, February 11, 2019
+//***********************************************************************
+
+#include<iostream>
+#include "lab1_polynomial.h"
 #include "stdafx.h"
-#include <iostream>
-#include<string>
-#include<ctime>
-#include<fstream>
-//#include <__ASSERT.h>
 
 using namespace std;
 
-class Polynomial { 
-	int* data;
-	int data_size;
-public:	
-	Polynomial(int A[], int size) {
-		data_size = size;
-		data = new int[data_size];
-		for (int i = 0; i < data_size; i++) {
-			data[i] = A[i];
-		}
-	}
-	Polynomial() {
-		srand(time(0));
-		data_size = rand() % 1000 + 1;
-		data = new int[data_size];
-		
-		for (int i = 0; i < data_size; i++) {
-			int randValue = rand() % 1000 + 1;
-			data[i] = randValue;
-		}
-	}
-	Polynomial(string fileName) {
-		ifstream instream(fileName);
-		int in;
-		int lineNumber = -1;
-		while (!instream.eof()) {
-			instream >> in;
-			if (lineNumber == -1)
-			{
-				data_size = in;
-				data = new int[data_size];
-			}
-			else
-			{
-				data[lineNumber] = in;
-			}
-			lineNumber++;
-		}
-		instream.close();
-	}
-	~Polynomial() {		
-			delete[] data;
-	}
-	bool operator==(const Polynomial& target) {
-		bool isValid = true;
-		if (this->data_size != target.data_size)
-			return false;
-		for (int i = 0; i < target.data_size; i++) {
-			if (this->data[i] != target.data[i]) {
-				isValid = false;
-				break;
-			}
-		}
-		return isValid;
-	}
-	Polynomial operator+(const Polynomial& target)
-	{
-		Polynomial result;
-		for (int i = 0; i < target.data_size; i++) {
-			result.data[i] = this->data[i] + target.data[i];
-		}
-		result.data_size = target.data_size;
-		return result;
-	}
-	Polynomial operator-(const Polynomial& target)
-	{
-		Polynomial result;
-		for (int i = 0; i < target.data_size; i++) {
-			result.data[i] = this->data[i] - target.data[i];
-		}
-		result.data_size = target.data_size;
-		return result;
-	}
-	Polynomial operator*(const Polynomial& target)
-	{
-		Polynomial result;
-		result.data_size = target.data_size + data_size - 1;
-		for (int i = 0; i < result.data_size; i++)
-		{
-			result.data[i] = 0;
-		}
-		for (int i = 0; i < this->data_size; i++) {
-			for (int j = 0; j < target.data_size; j++) {
-				int resultValue = this->data[i] * target.data[j];
-				int sumValue = result.data[i + j];
-				result.data[i + j] = resultValue+sumValue;
-			}
-		}
-		return result;
-	}
-	Polynomial derivative()
-	{
-		if (data_size == 0)
-		{
-			Polynomial emptyPoly(0,0);
-			return emptyPoly;
-		}
-		Polynomial result;
-		result.data_size = data_size - 1;
-		for (int i = 0; i < data_size; i++) {
-			result.data[i] = ((i+1) * data[i+1]);
-		}		
-		return result;
-	}
-	void print() {
-		
-		for (int i = 0; i < data_size; i++)
-		{
-			cout << data[i];
-			if (i != 0)
-				cout << "x^" << i;
-			if (i != data_size - 1)
-				cout << " + ";
-		}
-	}
-	friend class PolynomialTest;
-};
-
 class PolynomialTest {
-	
 public:
-	bool test_constructor_array() {
-		bool isValid = true;
-		int testArray[5] = { 19,59,4,41,8 };
-		Polynomial polyWithArray(testArray, 5);
+
+	void test_constructor_default() {
+		Polynomial poly1;
+		Polynomial poly2;
+		Polynomial poly3;
+		poly1.print();
+		cout << poly1.data_size << endl;
+		poly2.print();
+		cout << poly2.data_size << endl;
+		poly3.print();
+		cout << poly3.data_size << endl;
+		cout << "test_constructor_default Passed" << endl;
+	}
+
+	void test_constructor_array() {
+		bool passed1, passed2, passed3 = true;
+		int testArray1[5] = { 19, 59, 4, 41, 8 };
+		Polynomial polyWithArray1(testArray1, 5);
+		int testArray2[5] = { 19, 59, 4, 41, 0 };
+		Polynomial polyWithArray2(testArray2, 5);
+		int testArray3[5] = { 0, 1, 2, 3, 4 };
+		Polynomial polyWithArray3(testArray3, 5);
 		//individually test coefficients
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < sizeof(testArray1); i++)
 		{
-			if (polyWithArray.data[i] != testArray[i])
+			if (polyWithArray1.data[i] != testArray1[i])
 			{
-				isValid = false;
+				passed1 = false;
 				break;
 			}
 		}
-		return isValid;
+
+		for (int i = 0; i < sizeof(testArray2); i++)
+		{
+			if (polyWithArray2.data[i] != testArray2[i])
+			{
+				passed2 = false;
+				break;
+			}
+		}
+
+		for (int i = 0; i < sizeof(testArray3); i++)
+		{
+			if (polyWithArray3.data[i] != testArray3[i])
+			{
+				passed3 = false;
+				break;
+			}
+		}
+
+		if (passed1 && passed2 && passed3)
+		{
+			cout << "test_constructor_array Passed" << endl;
+		}
+
+		else
+		{
+			cout << "test_constructor_array Failed" << endl;
+		}
 	}
-	bool test_constructor_string() {
-		bool isValid = true;
+
+	void test_constructor_string() {
+		bool passed = true;
 		Polynomial polyWithString("Polynomial.txt");
 		int testArray[8] = { 1,16,-5,6,1,9,8,22 };
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < sizeof(testArray); i++)
 		{
 			if (polyWithString.data[i] != testArray[i])
 			{
-				isValid = false;
+				passed = false;
 				break;
 			}
 		}
-		return isValid;
 
-	}
-	
-	bool test_equals_operator() {
-		
-		Polynomial polyWithString("Polynomial.txt");
-		int testArray[8] = { 1,16,-5,6,1,9,8,22 };
-		Polynomial polyWithArray(testArray, 8);
-		return polyWithString == polyWithArray;
-	}
-	bool test_multiply_operator() {
+		if (passed)
+		{
+			cout << "test_constructor_string Passed" << endl;
+		}
 
+		else
+		{
+			cout << "test_constructor_string Failed" << endl;
+		}
+	}
+
+	void test_equals_operator() {
+		bool passed1, passed2, passed3;
+		int testArray1[5] = { 19, 59, 4, 41, 8 };
+		Polynomial poly1(testArray1, 5);
+		Polynomial duplicatePoly1(testArray1, 5);
+		int testArray2[5] = { 19, 59, 4, 41, 0 };
+		Polynomial poly2(testArray2, 5);
+		Polynomial duplicatePoly2(testArray2, 5);
+		int testArray3[5] = { 0, 1, 2, 3, 4 };
+		Polynomial poly3(testArray3, 5);
+		Polynomial duplicatePoly3(testArray3, 5);
+		passed1 = poly1 == duplicatePoly1;
+		passed3 = poly2 == duplicatePoly2;
+		passed3 = poly3 == duplicatePoly3;
+
+		if (passed1 && passed2 && passed3)
+		{
+			cout << "test_equals_operator Passed" << endl;
+		}
+
+		else
+		{
+			cout << "tes_equals_operator Failed" << endl;
+		}
+	}
+
+	void test_multiply_operator() {
+		bool passed1, passed2, passed3;
+		//TEST CASE 1
 		int testArray1[4] = { 5, 0, 10, 6 };
 		int testArray2[3] = { 1, 2, 4 };
-		int resultArray[6] = { 5, 10, 30, 26, 52, 24 };
-		Polynomial polyWithArray1(testArray1, 4);
-		Polynomial polyWithArray2(testArray2, 3);
-		Polynomial resultPoly(resultArray, 6);
-		
-		Polynomial returnPoly = polyWithArray1 * polyWithArray2;
-		return returnPoly==resultPoly;
-	}
-	void run() {
-		//test 1 - constructor with array
-		if (test_constructor_array())
-			cout << "test_constructor_array Passed" << endl;
-		else
-			cout << "test_constructor_array Failed" << endl;
-		//test 2 - constructor with string
-		if (test_constructor_string())
-			cout << "test_constructor_string Passed" << endl;
-		else
-			cout << "test_constructor_string Failed" << endl;
-		//test 3 - test equal operator
-		if (test_equals_operator())
-			cout << "test_equals_operator Passed" << endl;
-		else
-			cout << "test_equals_operator Failed" << endl;
-		//test 4 - test plus operator
-		if (test_multiply_operator())
+		Polynomial poly1(testArray1, 4);
+		Polynomial poly2(testArray2, 3);
+		int resultArray1[6] = { 5, 10, 30, 26, 52, 24 };
+		Polynomial resultPoly1(resultArray1, 6);
+		Polynomial returnPoly1 = poly1 * poly2;
+		passed1 = returnPoly1 == resultPoly1;
+		//TEST CASE 2
+		int testArray3[2] = { 2, 3 };
+		int testArray4[4] = { 0, 1, 2, 3 };
+		Polynomial poly3(testArray3, 2);
+		Polynomial poly4(testArray4, 4);
+		int resultArray2[5] = { 0, 2, 7, 12, 9 };
+		Polynomial resultPoly2(resultArray2, 5);
+		Polynomial returnPoly2 = poly3 * poly4;
+		passed2 = returnPoly2 == resultPoly2;
+		//TEST CASE 3
+		int testArray5[4] = { 5, 4, 3, 0 };
+		int testArray6[3] = { 1, 0, 1 };
+		Polynomial poly5(testArray5, 4);
+		Polynomial poly6(testArray6, 3);
+		int resultArray3[5] = { 5, 4, 8, 4, 3 };
+		Polynomial resultPoly3(resultArray3, 5);
+		Polynomial returnPoly3 = poly5 * poly6;
+		passed3 = returnPoly3 == resultPoly3;
+
+		if (passed1 && passed2 && passed3)
+		{
 			cout << "test_multiply_operator Passed" << endl;
-		else
-			cout << "test_multiply_operator Failed" << endl;
+		}
 
+		else
+		{
+			cout << "test_multiply_operator Failed" << endl;
+		}
 	}
 
+	void test_add_operator() {
+		bool passed1, passed2, passed3;
+		//TEST CASE 1
+		int testArray1[4] = { 5, 0, 10, 6 };
+		int testArray2[3] = { 1, 2, 4 };
+		Polynomial poly1(testArray1, 4);
+		Polynomial poly2(testArray2, 3);
+		int resultArray1[4] = { 6, 2, 14, 6 };
+		Polynomial resultPoly1(resultArray1, 4);
+		Polynomial returnPoly1 = poly1 + poly2;
+		passed1 = returnPoly1 == resultPoly1;
+		//TEST CASE 2
+		int testArray3[2] = { 2, 3 };
+		int testArray4[4] = { 0, 1, 2, 3 };
+		Polynomial poly3(testArray3, 2);
+		Polynomial poly4(testArray4, 4);
+		int resultArray2[4] = { 2, 4, 2, 3 };
+		Polynomial resultPoly2(resultArray2, 4);
+		Polynomial returnPoly2 = poly3 + poly4;
+		passed2 = returnPoly2 == resultPoly2;
+		//TEST CASE 3
+		int testArray5[4] = { 5, 4, 3, 0 };
+		int testArray6[3] = { 1, 0, 1 };
+		Polynomial poly5(testArray5, 4);
+		Polynomial poly6(testArray6, 3);
+		int resultArray3[3] = { 6, 4, 4 };
+		Polynomial resultPoly3(resultArray3, 3);
+		Polynomial returnPoly3 = poly5 + poly6;
+		passed3 = returnPoly3 == resultPoly3;
+
+		if (passed1 && passed2 && passed3)
+		{
+			cout << "test_add_operator Passed" << endl;
+		}
+
+		else
+		{
+			cout << "test_add_operator Failed" << endl;
+		}
+	}
+
+	void test_derivative_operator() {
+		bool passed1, passed2, passed3;
+		//TEST CASE 1
+		int testArray1[4] = { 1, 2, 3, 4 };
+		Polynomial poly1(testArray1, 4);
+		int result1[3] = { 2, 6, 12 };
+		Polynomial resultPoly1(result1, 3);
+		Polynomial returnPoly1 = poly1.derivative();
+		passed1 = returnPoly1 == resultPoly1;
+		//TEST CASE 2
+		int testArray2[5] = { 1, 2, 3, 4, 0 };
+		Polynomial poly2(testArray2, 5);
+		int result2[3] = { 2, 6, 12 };
+		Polynomial resultPoly2(result2, 3);
+		Polynomial returnPoly2 = poly2.derivative();
+		passed2 = returnPoly2 == resultPoly2;
+		//TEST CASE 3
+		int testArray3[6] = { 0, 1, 2, 3, 4, 5 };
+		Polynomial poly3(testArray3, 6);
+		int result3[5] = { 1, 4, 9, 16, 25 };
+		Polynomial resultPoly3(result3, 5);
+		Polynomial returnPoly3 = poly3.derivative();
+		passed3 = returnPoly3 == resultPoly3;
+
+		if (passed1 && passed2 && passed3)
+		{
+			cout << "test_derivative_operator Passed" << endl;
+		}
+
+		else
+		{
+			cout << "test_derivative_operator Failed" << endl;
+		}
+	}
+
+	void run() {
+		//test 1 - default constructor
+		test_constructor_default();
+
+		//test 2 - constructor with array
+		test_constructor_array();
+
+		//test 3 - constructor with string
+		test_constructor_string();
+
+		//test 4 - test equal operator
+		test_equals_operator();
+
+		//test 5 - test multiply operator
+		test_multiply_operator();
+
+		//test 6 - test add operator
+		test_add_operator();
+
+		//test 7 - test derivative operator
+		test_derivative_operator();
+	}
 };
-int main(){
-	
+
+int main() {
+
 	PolynomialTest testClass = PolynomialTest();
-	testClass.run();	
+	testClass.run();
 	cout << "\n";
 	return 0;
 }
