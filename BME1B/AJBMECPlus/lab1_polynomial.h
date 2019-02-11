@@ -14,13 +14,13 @@
 // as an ADT using sequential list ADT as a template
 // Due Date: Monday, February 11, 2019
 //***********************************************************************
-
+#include<conio.h>
 #include<iostream>
 #include<string>
 #include<ctime>
 #include<fstream>
 #include<cstdlib>
-#include "stdafx.h"
+
 
 using namespace std;
 
@@ -32,25 +32,17 @@ class Polynomial {
 public:
 
 	Polynomial(int A[], int size) {
-		if (sizeof(A) == size)
+		data_size = size;
+		data = new int[size];
+
+		for (int i = 0; i < data_size; i++)
 		{
-			data_size = size;
-			data = new int[data_size];
-
-			for (int i = 0; i < data_size; i++)
-			{
-				data[i] = 0;
-			}
-
-			for (int i = 0; i < data_size; i++)
-			{
-				data[i] = A[i];
-			}
+			data[i] = A[i];
 		}
 	}
 
 	Polynomial() {
-		srand(time(0));
+		srand(time(NULL));
 		data_size = rand() % 1001;
 		data = new int[data_size];
 		data[0] = rand() % 1000 + (-1000) || rand() % 1001;
@@ -88,12 +80,27 @@ public:
 
 	bool operator==(const Polynomial& target) {
 		bool isValid = true;
+		bool ignoreLast = false;
+		int checkDataSize = data_size;
+		if(target.data_size > 0 && target.data[target.data_size -1] ==0)
+		{ 
+			ignoreLast = true;
+			checkDataSize--;
+		}
+		if (data_size > 0 && data[data_size - 1] ==0 )
+		{
+			ignoreLast = true;
+			checkDataSize--;
+		}
 		if (data_size != target.data_size)
 		{
-			return false;
+			if (ignoreLast && abs(data_size - target.data_size) > 1)
+				return false;
+			if (!ignoreLast && (data_size != target.data_size))
+				return false;
 		}
-
-		for (int i = 0; i < data_size; i++)
+		
+		for (int i = 0; i < checkDataSize; i++)
 		{
 			if (data[i] != target.data[i])
 			{
@@ -107,27 +114,38 @@ public:
 
 	Polynomial operator+(const Polynomial& target)
 	{
-		Polynomial result;
-
-		for (int i = 0; i < target.data_size; i++)
+		
+		int size = data_size > target.data_size ? target.data_size : data_size;
+		for (int k = 0; k < size; k++)
 		{
-			result.data[i] = this->data[i] + target.data[i];
-		}
+			if (size == target.data_size)
+				data[k] += target.data[k];
+			else
+				target.data[k] += data[k];
 
-		result.data_size = target.data_size;
-		return result;
+		}
+		if (size == target.data_size)
+			return Polynomial(data, data_size); 
+		else
+			return target;
+		
 	}
 
 	Polynomial operator-(const Polynomial& target)
 	{
-		Polynomial result;
-
-		for (int i = 0; i < target.data_size; i++)
+		int size = data_size > target.data_size ? data_size :target.data_size;
+		int* resultArray = new int[size];
+		Polynomial result = Polynomial(resultArray, size);
+		for (int k = 0; k < size; k++)
 		{
-			result.data[i] = this->data[i] - target.data[i];
+			int sourceValue = 0;
+			int targetValue = 0;
+			if (k < data_size)
+				sourceValue = data[k];
+			if (k < target.data_size)
+				targetValue = target.data[k];
+			result.data[k] =  sourceValue - targetValue;			
 		}
-
-		result.data_size = target.data_size;
 		return result;
 	}
 

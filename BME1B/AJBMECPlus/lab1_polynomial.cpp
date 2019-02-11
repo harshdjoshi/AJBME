@@ -14,10 +14,11 @@
 // as an ADT using sequential list ADT as a template
 // Due Date: Monday, February 11, 2019
 //***********************************************************************
-
+#include "stdafx.h"
 #include<iostream>
 #include "lab1_polynomial.h"
-#include "stdafx.h"
+
+
 
 using namespace std;
 
@@ -38,24 +39,30 @@ public:
 	}
 
 	void test_constructor_array() {
-		bool passed1, passed2, passed3 = true;
+		bool passed1 = true;
+		bool passed2 = true;
+		bool passed3 = true;
 		int testArray1[5] = { 19, 59, 4, 41, 8 };
-		Polynomial polyWithArray1(testArray1, 5);
+		int* testArrayOne = testArray1;
+		Polynomial polyWithArray1(testArrayOne, 5);
 		int testArray2[5] = { 19, 59, 4, 41, 0 };
-		Polynomial polyWithArray2(testArray2, 5);
+		int* testArrayTwo = testArray2;
+		Polynomial polyWithArray2(testArrayTwo, 5);
 		int testArray3[5] = { 0, 1, 2, 3, 4 };
-		Polynomial polyWithArray3(testArray3, 5);
+		int* testArrayThree = testArray3;
+		Polynomial polyWithArray3(testArrayThree, 5);
 		//individually test coefficients
-		for (int i = 0; i < sizeof(testArray1); i++)
+		for (int i = 0; i < 5; i++)
 		{
 			if (polyWithArray1.data[i] != testArray1[i])
 			{
+				int test = polyWithArray1.data[i];
 				passed1 = false;
 				break;
 			}
 		}
 
-		for (int i = 0; i < sizeof(testArray2); i++)
+		for (int i = 0; i < 5; i++)
 		{
 			if (polyWithArray2.data[i] != testArray2[i])
 			{
@@ -64,7 +71,7 @@ public:
 			}
 		}
 
-		for (int i = 0; i < sizeof(testArray3); i++)
+		for (int i = 0; i < 5; i++)
 		{
 			if (polyWithArray3.data[i] != testArray3[i])
 			{
@@ -83,12 +90,12 @@ public:
 			cout << "test_constructor_array Failed" << endl;
 		}
 	}
-
+	
 	void test_constructor_string() {
 		bool passed = true;
 		Polynomial polyWithString("Polynomial.txt");
 		int testArray[8] = { 1,16,-5,6,1,9,8,22 };
-		for (int i = 0; i < sizeof(testArray); i++)
+		for (int i = 0; i < 8; i++)
 		{
 			if (polyWithString.data[i] != testArray[i])
 			{
@@ -109,7 +116,9 @@ public:
 	}
 
 	void test_equals_operator() {
-		bool passed1, passed2, passed3;
+		bool passed1 = true;
+		bool passed2 = true;
+		bool passed3 = true;
 		int testArray1[5] = { 19, 59, 4, 41, 8 };
 		Polynomial poly1(testArray1, 5);
 		Polynomial duplicatePoly1(testArray1, 5);
@@ -120,7 +129,7 @@ public:
 		Polynomial poly3(testArray3, 5);
 		Polynomial duplicatePoly3(testArray3, 5);
 		passed1 = poly1 == duplicatePoly1;
-		passed3 = poly2 == duplicatePoly2;
+		passed2 = poly2 == duplicatePoly2;
 		passed3 = poly3 == duplicatePoly3;
 
 		if (passed1 && passed2 && passed3)
@@ -135,7 +144,7 @@ public:
 	}
 
 	void test_multiply_operator() {
-		bool passed1, passed2, passed3;
+		bool passed1, passed2, passed3 = true;
 		//TEST CASE 1
 		int testArray1[4] = { 5, 0, 10, 6 };
 		int testArray2[3] = { 1, 2, 4 };
@@ -159,8 +168,8 @@ public:
 		int testArray6[3] = { 1, 0, 1 };
 		Polynomial poly5(testArray5, 4);
 		Polynomial poly6(testArray6, 3);
-		int resultArray3[5] = { 5, 4, 8, 4, 3 };
-		Polynomial resultPoly3(resultArray3, 5);
+		int resultArray3[6] = { 5, 4, 8, 4, 3, 0 };
+		Polynomial resultPoly3(resultArray3, 6);
 		Polynomial returnPoly3 = poly5 * poly6;
 		passed3 = returnPoly3 == resultPoly3;
 
@@ -176,7 +185,7 @@ public:
 	}
 
 	void test_add_operator() {
-		bool passed1, passed2, passed3;
+		bool passed1, passed2, passed3 = true;
 		//TEST CASE 1
 		int testArray1[4] = { 5, 0, 10, 6 };
 		int testArray2[3] = { 1, 2, 4 };
@@ -200,8 +209,8 @@ public:
 		int testArray6[3] = { 1, 0, 1 };
 		Polynomial poly5(testArray5, 4);
 		Polynomial poly6(testArray6, 3);
-		int resultArray3[3] = { 6, 4, 4 };
-		Polynomial resultPoly3(resultArray3, 3);
+		int resultArray3[4] = { 6, 4, 4,0 };
+		Polynomial resultPoly3(resultArray3, 4);
 		Polynomial returnPoly3 = poly5 + poly6;
 		passed3 = returnPoly3 == resultPoly3;
 
@@ -216,8 +225,49 @@ public:
 		}
 	}
 
+	void test_subtract_operator() {
+		bool passed1, passed2, passed3 = true;
+		//TEST CASE 1
+		int testArray1[4] = { 5, 0, 10, 6 };
+		int testArray2[3] = { 1, 2, 4 };
+		Polynomial poly1(testArray1, 4);
+		Polynomial poly2(testArray2, 3);
+		int resultArray1[4] = { 4, -2, 6, 6 };
+		Polynomial resultPoly1(resultArray1, 4);
+		Polynomial returnPoly1 = poly1 - poly2;
+		passed1 = returnPoly1 == resultPoly1;
+		//TEST CASE 2
+		int testArray3[2] = { 2, 3 }; //3x+2
+		int testArray4[4] = { 0, 1, 2, 3 }; //3x^3 + 2x^2 + 1x
+		Polynomial poly3(testArray3, 2);
+		Polynomial poly4(testArray4, 4);
+		int resultArray2[4] = { 2, 2, -2, -3 };
+		Polynomial resultPoly2(resultArray2, 4);
+		Polynomial returnPoly2 = poly3 - poly4;
+		passed2 = returnPoly2 == resultPoly2;
+		//TEST CASE 3
+		int testArray5[4] = { 5, 4, 3, 0 };
+		int testArray6[4] = { 5, 4, 3, 0 };
+		Polynomial poly5(testArray5, 4);
+		Polynomial poly6(testArray6, 3);
+		int resultArray3[4] = {4};
+		Polynomial resultPoly3(resultArray3, 4);
+		Polynomial returnPoly3 = poly5 - poly6;
+		passed3 = returnPoly3 == resultPoly3;
+
+		if (passed1 && passed2 && passed3)
+		{
+			cout << "test_subtract_operator Passed" << endl;
+		}
+
+		else
+		{
+			cout << "test_subtract_operator Failed" << endl;
+		}
+	}
+
 	void test_derivative_operator() {
-		bool passed1, passed2, passed3;
+		bool passed1, passed2, passed3 = true;
 		//TEST CASE 1
 		int testArray1[4] = { 1, 2, 3, 4 };
 		Polynomial poly1(testArray1, 4);
@@ -270,7 +320,10 @@ public:
 		//test 6 - test add operator
 		test_add_operator();
 
-		//test 7 - test derivative operator
+		//test 7 - test subtract operator
+		test_subtract_operator();
+
+		//test 8 - test derivative operator
 		test_derivative_operator();
 	}
 };
@@ -280,5 +333,6 @@ int main() {
 	PolynomialTest testClass = PolynomialTest();
 	testClass.run();
 	cout << "\n";
+	_getch();
 	return 0;
 }
